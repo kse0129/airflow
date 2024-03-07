@@ -32,7 +32,7 @@ with DAG(
         print("task_instance: ", kwargs.get("task_instance"))
 
 
-    @task(task_id="python_t3", start_date="{{ data_interval_start | ds }}", end_date="{{ data_interval_end | ds }}")
+    @task(task_id="python_t3")
     def python_function3(start_date, end_date, **kwargs):
         print(start_date)
         print(end_date)
@@ -51,5 +51,5 @@ with DAG(
     )
 
     python_t2 = python_function2()
-    python_t3 = python_function3()
+    python_t3 = python_function3(start_date="{{ data_interval_start | ds }}", end_date="{{ data_interval_end | ds }}")
     python_t1 >> python_t2 >> python_t3 >> python_t4
