@@ -6,7 +6,7 @@ from airflow.utils.edgemodifier import Label
 
 
 with DAG(
-    dag_id="dags_task_group",
+    dag_id="dags_empty_with_edge_label",
     start_date=pendulum.datetime(2024, 3, 1, tz="Asia/Seoul"),
     schedule=None,
     catchup=False
