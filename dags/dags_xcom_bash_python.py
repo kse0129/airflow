@@ -29,3 +29,26 @@ with DAG(
     )
 
     python_push_xcom() >> bash_pull
+
+    bash_push = BashOperator(
+        task_id='bash_push',
+        bash_command='echo PUSH_START '
+                     '{{ ti.xcom_push(key="bash_pushed", value=200) }} && '
+                     'echo PUSH_COMPLETE'
+    )
+
+    @task(task_id='python_pull')
+    def python_pull_xcom(**kwargs):
+        ti = kwargs.get('ti')
+        status_value = ti.xcom_pull(key='bash_pushed')
+        return_value = ti.xcom_pull(task_ids='bash_push')
+        print(f'status_value: {status_value}')
+        print(f'return_value: {return_value}')
+
+    @task(task_id='python_pull2')
+    def python_pull_xcom2(params, **kwargs):
+        print(params.get('bash_pushed'))
+        
+
+    bash_push >> python_pull_xcom()
+    python_pull_xcom2(bash_push)
