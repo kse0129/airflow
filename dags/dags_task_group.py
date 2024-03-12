@@ -31,7 +31,7 @@ with DAG(
 
         inner_function1() >> inner_function2
 
-    with TaskGroup(group_id='second_group', tooltip='데커레이터를 이용한 두 번째 그룹') as second_group:
+    with TaskGroup(group_id='second_group', tooltip='클래스를 이용한 두 번째 그룹') as second_group:
         @task(task_id='inner_function1')
         def inner_function1(**kwargs):
             print('두 번째 task group의 첫 번째 task')
