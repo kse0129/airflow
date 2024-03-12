@@ -24,3 +24,5 @@ with DAG(
         html_content='{{ data_interval_end.in_timezone("Asia/Seoul") | ds }} 처리 결과는 <br> \
                       {{ ti.xcom_pull(task_ids="something_task") }} 입니다'
     )
+
+    some_logic() >> send_email
