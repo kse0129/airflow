@@ -1,7 +1,7 @@
 from airflow.operators.python import BranchPythonOperator, PythonOperator
 from airflow.decorators import task
 from airflow import DAG
-import datetime
+from datetime import datetime
 
 with DAG(
     dag_id="dags_branch_python_operator",
