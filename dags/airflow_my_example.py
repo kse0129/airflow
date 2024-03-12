@@ -15,7 +15,7 @@ with DAG(
     @task(task_id='pull_by_return')
     def pull_by_return(status, **kwargs):
         ti = kwargs.get('ti')
-        print(ti.xcom_pull(key='return_value', task_ids='push_by_return'))
-        print(status) 
+        print("t1: ", ti.xcom_pull(key='return_value', task_ids='push_by_return'))
+        print("stauts: ", status) 
     
     pull_by_return(push_by_return()) # 함수의 return 을 다른 함수의 인자로 전달
