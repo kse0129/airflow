@@ -7,7 +7,7 @@ import pendulum
 import datetime
 
 with DAG(
-    dag_id="dags_xcom_bash2python",
+    dag_id="dags_xcom_bash_python",
     schedule="30 9 * * *",
     start_date=pendulum.datetime(2024, 3, 1, tz="Asia/Seoul"),
     catchup=False
