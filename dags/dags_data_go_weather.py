@@ -38,7 +38,7 @@ with DAG(
                 ti = kwargs['ti']
                 print(ti.xcom_pull(task_ids='short_weather'))
                 df = pd.read_csv(ti.xcom_pull(task_ids='short_weather'))
-                print(df.head())
+                print("dataframe header: ", df.head())
                 # sql = 'INSERT INTO py_opr_drct_insrt values (%s, %s, %s, %s);'
                 # cursor.execute(sql, (dag_id, task_id, run_id, msg))
                 # conn.commit()
