@@ -3,7 +3,7 @@ from airflow.hooks.base import BaseHook
 import pandas as pd
 
 class DataGoKrCsvOperator(BaseOperator):
-    template_fields = ('path', 'file_name')
+    template_fields = ('path', 'file_name', 'api_params')
 
     def __init__(self, path, file_name, provider, api_name, api_params, **kwargs):
         super().__init__(**kwargs)
@@ -30,8 +30,6 @@ class DataGoKrCsvOperator(BaseOperator):
         import requests
         import json
 
-        print("base_url:", base_url)
-        print("parameters:", kwargs)
         response = requests.get(base_url, params=kwargs)
         contents = json.loads(response.text)['response']['body']['items']['item']
         row_df = pd.DataFrame(contents)

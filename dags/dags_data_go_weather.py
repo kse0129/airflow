@@ -15,13 +15,16 @@ with DAG(
         file_name='short_weather.csv',
         provider='13600000',
         api_name=['VilageFcstInfoService_2.0', 'getUltraSrtNcst'],
-        api_params={'numOfRows':"10",
-                'pageNo':"1",
-                'dataType':"JSON",
-                'base_date':"20240314",
-                'base_time':"0600",
-                'nx':'55',
-                'ny':'127'}
+        api_params={
+            'serviceKey':'{{var.value.apikey_weather_data_go_kr}}',
+            'numOfRows':"10",
+            'pageNo':"1",
+            'dataType':"JSON",
+            'base_date':"20240314",
+            'base_time':"0600",
+            'nx':'55',
+            'ny':'127'}
+        
     )
 
     short_weather
