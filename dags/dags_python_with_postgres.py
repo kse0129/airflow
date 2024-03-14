@@ -26,7 +26,7 @@ with DAG(
     insert_postgres = PythonOperator(
         task_id='insert_postgres',
         python_callable=insert_postgres,
-        op_args=['172.28.0.3', '5432', 'kse', 'password', 'kse']
+        op_args=['172.28.0.3', '5432', 'kse', 'kse', 'password']
     )
 
     insert_postgres
