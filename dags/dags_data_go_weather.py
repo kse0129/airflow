@@ -31,7 +31,7 @@ with DAG(
         from airflow.providers.postgres.hooks.postgres import PostgresHook
         from contextlib import closing
         import pandas as pd
-
+        print("postgres_conn_id: ", postgres_conn_id)
         postgres_hook = PostgresHook(postgres_conn_id)
         with closing(postgres_hook.get_conn()) as conn:
             with closing(conn.cursor()) as cursor:
