@@ -26,6 +26,10 @@ class DataGoKrCsvOperator(BaseOperator):
             os.system(f'mkdir -p {self.path}')
         total_row_df.to_csv(self.path + '/' + self.file_name, encoding='utf-8', index=False)
 
+        return self.path + '/' + self.file_name
+
+
+
     def _call_api(self, base_url, **kwargs):
         import requests
         import json
