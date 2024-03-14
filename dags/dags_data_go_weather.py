@@ -15,7 +15,7 @@ with DAG(
         file_name='short_weather.csv',
         provider='13600000',
         api_name=['VilageFcstInfoService_2.0', 'getUltraSrtNcst'],
-        params={'numOfRows':"10",
+        api_params={'numOfRows':"10",
                 'pageNo':"1",
                 'dataType':"JSON",
                 'base_date':"20240314",

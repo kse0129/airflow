@@ -5,14 +5,14 @@ import pandas as pd
 class DataGoKrCsvOperator(BaseOperator):
     template_fields = ('path', 'file_name')
 
-    def __init__(self, path, file_name, provider, api_name, params, **kwargs):
+    def __init__(self, path, file_name, provider, api_name, api_params, **kwargs):
         super().__init__(**kwargs)
         self.http_conn_id = 'data.go.kr'
         self.path = path
         self.file_name = file_name
         self.provider = provider
         self.api_name = '/'.join(api_name)
-        self.params = params
+        self.api_params = api_params
 
     def execute(self, context):
         import os
@@ -20,7 +20,7 @@ class DataGoKrCsvOperator(BaseOperator):
         connection = BaseHook.get_connection(self.http_conn_id)
         self.base_url = f'http://{connection.host}/{self.provider}/{self.api_name}'
 
-        total_row_df = self._call_api(self.base_url, **self.params)
+        total_row_df = self._call_api(self.base_url, **self.api_params)
 
         if not os.path.exists(self.path):
             os.system(f'mkdir -p {self.path}')
