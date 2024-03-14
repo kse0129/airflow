@@ -10,7 +10,7 @@ with DAG(
 ) as dag:
     
     def insert_postgres(postgres_conn_id, **kwargs):
-        from airflow.providers.postgres.hook.postgres import PostgresHook
+        from airflow.providers.postgres.hooks.postgres import PostgresHook
         from contextlib import closing
 
         postgres_hook = PostgresHook(postgres_conn_id)
@@ -19,7 +19,7 @@ with DAG(
                 dag_id = kwargs.get('ti').dag_id
                 task_id = kwargs.get('ti').task_id
                 run_id = kwargs.get('ti').run_id
-                msg = 'insert 수행'
+                msg = 'insert hook수행'
                 sql = 'INSERT INTO py_opr_drct_insrt values (%s, %s, %s, %s);'
                 cursor.execute(sql, (dag_id, task_id, run_id, msg))
                 conn.commit()
