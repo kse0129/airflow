@@ -31,6 +31,7 @@ class DataGoKrCsvOperator(BaseOperator):
         import json
 
         response = requests.get(base_url, params=kwargs)
+        print(response.text)
         contents = json.loads(response.text)['response']['body']['items']['item']
         row_df = pd.DataFrame(contents)
 
