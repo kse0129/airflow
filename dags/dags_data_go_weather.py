@@ -13,7 +13,7 @@ with DAG(
         task_id='short_weather',
         path='/opt/airflow/files/short_weather/{{data_interval_end.in_timezone("Asia/Seoul") | ds_nodash}}',
         file_name='short_weather.csv',
-        provider='13600000',
+        provider='1360000',
         api_name=['VilageFcstInfoService_2.0', 'getUltraSrtNcst'],
         api_params={
             'serviceKey':'{{var.value.apikey_weather_data_go_kr}}',
