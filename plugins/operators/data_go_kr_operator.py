@@ -5,14 +5,14 @@ import pandas as pd
 class DataGoKrCsvOperator(BaseOperator):
     template_fields = ('path', 'file_name')
 
-    def __init__(self, path, file_name, provider, api_name, **kwargs):
+    def __init__(self, path, file_name, provider, api_name, params, **kwargs):
         super().__init__(**kwargs)
         self.http_conn_id = 'data.go.kr'
         self.path = path
         self.file_name = file_name
         self.provider = provider
         self.api_name = '/'.join(api_name)
-        self.params = kwargs
+        self.params = params
 
     def execute(self, context):
         import os
