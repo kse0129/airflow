@@ -20,7 +20,7 @@ class DataGoKrCsvOperator(BaseOperator):
         connection = BaseHook.get_connection(self.http_conn_id)
         self.base_url = f'http://{connection.host}/{self.provider}/{self.api_name}'
 
-        total_row_df = self._call_api(self.base_url, self.params)
+        total_row_df = self._call_api(self.base_url, **self.params)
 
         if not os.path.exists(self.path):
             os.system(f'mkdir -p {self.path}')
