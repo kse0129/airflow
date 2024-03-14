@@ -5,7 +5,7 @@ import pendulum
 
 with DAG(
     dag_id='data_go_weather',
-    schedule='* * * * *',
+    schedule=None,
     start_date=pendulum.datetime(2024, 3, 1, tz='Asia/Seoul'),
     catchup=False
 ) as dag:
