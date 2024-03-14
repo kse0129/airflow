@@ -36,12 +36,11 @@ with DAG(
         with closing(postgres_hook.get_conn()) as conn:
             with closing(conn.cursor()) as cursor:
                 ti = kwargs['ti']
-                print(ti.xcom_pull(task_ids='short_weather'))
                 df = pd.read_csv(ti.xcom_pull(task_ids='short_weather'))
-                print("dataframe header: ", df.head())
-                # sql = 'INSERT INTO py_opr_drct_insrt values (%s, %s, %s, %s);'
-                # cursor.execute(sql, (dag_id, task_id, run_id, msg))
-                # conn.commit()
+                sql = 'INSERT INTO short_weather values (%s, %s, %s, %s, %s, %s);'
+                for base_date, base_time, category, nx, ny, obsr_value in df.values:
+                    cursor.execute(sql, (base_date, base_time, category, nx, ny, obsr_value))
+                conn.commit()
 
     insert_postgres_with_hook = PythonOperator(
         task_id='insert_postgres_with_hook',
