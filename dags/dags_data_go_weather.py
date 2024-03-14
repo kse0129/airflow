@@ -30,12 +30,15 @@ with DAG(
     def insert_postgres(postgres_conn_id, **kwargs):
         from airflow.providers.postgres.hooks.postgres import PostgresHook
         from contextlib import closing
+        import pandas as pd
 
         postgres_hook = PostgresHook(postgres_conn_id)
         with closing(postgres_hook.get_conn()) as conn:
             with closing(conn.cursor()) as cursor:
                 ti = kwargs['ti']
                 print(ti.xcom_pull(task_ids='short_weather'))
+                df = pd.read_csv(ti.xcom_pull(task_ids='short_weather'))
+                print(df.head())
                 # sql = 'INSERT INTO py_opr_drct_insrt values (%s, %s, %s, %s);'
                 # cursor.execute(sql, (dag_id, task_id, run_id, msg))
                 # conn.commit()
