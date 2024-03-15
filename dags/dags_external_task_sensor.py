@@ -14,7 +14,7 @@ with DAG(
         task_id='external_task_sensor_a',
         external_dag_id='dags_branch_python_operator',
         external_task_id='task_a',
-        allowed_wtates=[State.SKIPPED],
+        allowed_states=[State.SKIPPED],
         execution_delta=timedelta(hours=6),
         poke_interval=10
     )
@@ -23,7 +23,7 @@ with DAG(
         task_id='external_task_sensor_b',
         external_dag_id='dags_branch_python_operator',
         external_task_id='task_b',
-        allowed_wtates=[State.SKIPPED],
+        allowed_states=[State.SKIPPED],
         execution_delta=timedelta(hours=6),
         poke_interval=10
     )
@@ -32,7 +32,7 @@ with DAG(
         task_id='external_task_sensor_c',
         external_dag_id='dags_branch_python_operator',
         external_task_id='task_c',
-        allowed_wtates=[State.SUCCESS],
+        allowed_states=[State.SUCCESS],
         execution_delta=timedelta(hours=6),
         poke_interval=10
     )
