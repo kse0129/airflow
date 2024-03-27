@@ -30,3 +30,5 @@ with DAG(
         task_id='bash_sleep_10',
         bash_command='sleep 10'
     )
+
+    bash_sleep_30 >> bash_sleep_10

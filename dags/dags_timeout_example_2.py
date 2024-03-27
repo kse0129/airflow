@@ -35,3 +35,5 @@ with DAG(
         task_id='bash_go',
         bash_command='exit 0'
     )
+
+    bash_sleep_35 >> bash_sleep_36 >> bash_go
