@@ -14,7 +14,7 @@ with DAG(
     schedule=None,
 ) as dag:
 
-    @task
+    @task(task_id="send_message_to_ms_teams")
     def send_message_to_ms_teams():
         webhook = Variable('msteams_webhook')
         payload = {
