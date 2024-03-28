@@ -16,7 +16,7 @@ with DAG(
 
     @task(task_id="send_message_to_ms_teams")
     def send_message_to_ms_teams():
-        webhook = Variable('msteams_webhook')
+        webhook = Variable.get('msteams_webhook')
         payload = {
           "@type": "MessageCard",
           "@context": "http://schema.org/extensions",
