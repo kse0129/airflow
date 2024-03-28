@@ -22,7 +22,7 @@ with DAG(
 ) as dag:
     bash_sleep_35 = BashOperator(
         task_id='bash_sleep_35',
-        bash_command='sleep 35'
+        bash_command='sleep 35',
     )
 
     bash_sleep_36 = BashOperator(
