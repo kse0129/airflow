@@ -1,22 +1,20 @@
-from datetime import datetime, timedelta
 from airflow import DAG
 from airflow.decorators import task
 from airflow.models import Variable
 import requests
-import json
+import pendulum
 
 with DAG(
     dag_id='teams_test',
-    default_args={
-        'owner': '김성언',
-    },
-    start_date=datetime(2024, 4, 1),
+    start_date=pendulum.datetime(2024, 3, 1, tz="Asia/Seoul"),
+    catchup=False,
     schedule=None,
 ) as dag:
 
     @task(task_id="send_message_to_ms_teams")
     def send_message_to_ms_teams():
         webhook = Variable.get('msteams_webhook')
+        print(1)
         payload = {
           "@type": "MessageCard",
           "@context": "http://schema.org/extensions",
