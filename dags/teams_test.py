@@ -28,7 +28,7 @@ with DAG(
                     "value": "김성언"
                 }, {
                     "name": "실행 시간",
-                    "value": pendulum.now()
+                    "value": str(pendulum.now())
                 }, {
                     "name": "상태",
                     "value": "전송 성공"
