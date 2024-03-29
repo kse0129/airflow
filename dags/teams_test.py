@@ -13,33 +13,30 @@ with DAG(
 
     @task(task_id="send_message_to_ms_teams")
     def send_message_to_ms_teams():
-        webhook = Variable.get('msteams_webhook')
-        print(1)
+        webhook = Variable.get("msteams_webhook")
         payload = {
-          "@type": "MessageCard",
-          "@context": "http://schema.org/extensions",
-          "summary": "Summary",
-          "sections": [{
-            "activityTitle": "에어플로우 테스트",
-            "activitySubtitle": "전송 성공",
-            "facts": [
-              {
-                "키1": "값1",
-                "키2": "값2"
-              }
-            ],
-            "text": "Text"
-          }],
-          "potentialAction": [{
-            "@type": "OpenUri",
-            "name": "Link name",
-            "targets": [{
-              "os": "default",
-              "uri": "https://www.google.com/"
-            }]
-          }]
+            "@type": "MessageCard",
+            "@context": "http://schema.org/extensions",
+            "themeColor": "0076D7",
+            "summary": "Larry Bryant created a new task",
+            "sections": [{
+                "activityTitle": "airflow 테스트",
+                "activitySubtitle": "airflow 전송 성공",
+                "activityImage": "https://adaptivecards.io/content/cats/3.png",
+                "facts": [{
+                    "name": "소유자",
+                    "value": "김성언"
+                }, {
+                    "name": "실행 시간",
+                    "value": pendulum.now()
+                }, {
+                    "name": "상태",
+                    "value": "전송 성공"
+                }],
+                "markdown": True
+            }],
         }
-        headers = {"content-type": "application/json"}
+        headers = {"Content-Type": "application/json"}
         requests.post(webhook, json=payload, headers=headers)
  
     send_message_to_ms_teams()
